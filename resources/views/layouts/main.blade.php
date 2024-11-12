@@ -19,10 +19,58 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/lost-items">Lost Items</a></li>
-                <li class="nav-item"><a class="nav-link" href="/found-items">Found Items</a></li>
-                <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('items.lost') }}">Lost Items</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('items.found') }}">Found Items</a></li>
+                
+                <!-- Category Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('items.category', 'Electronics') }}">Electronics</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Clothing') }}">Clothing</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Accessories') }}">Accessories</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Documents') }}">Documents</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Jewelry') }}">Jewelry</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Keys') }}">Keys</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Bags') }}">Bags</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Footwear') }}">Footwear</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Toys') }}">Toys</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Books') }}">Books</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Medical') }}">Medical</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Personal Items') }}">Personal Items</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Sports Equipment') }}">Sports Equipment</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Stationery') }}">Stationery</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Household Items') }}">Household Items</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Tools') }}">Tools</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Vehicles') }}">Vehicles</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Pet Items') }}">Pet Items</a>
+                        <a class="dropdown-item" href="{{ route('items.category', 'Miscellaneous') }}">Miscellaneous</a>
+                    </div>
+                </li>
+
+                @guest
+                    <!-- Show Login and Register links if the user is not logged in -->
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                @else
+                    <!-- Show dropdown with user’s name if logged in -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                            <a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="dropdown-item">Log Out</button>
+                            </form>
+                        </div>
+                    </li>
+                @endguest
             </ul>
         </div>
     </nav>
