@@ -39,6 +39,11 @@
                 </a>
             @endif
 
+@if (session('error'))
+    <div class="mb-4 text-sm text-red-600">
+        {{ session('error') }}
+    </div>
+@endif
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>

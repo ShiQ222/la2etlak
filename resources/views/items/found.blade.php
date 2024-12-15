@@ -1,43 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
-    <h1>Found Items</h1>
-    @if ($items->isEmpty())
-        <p>No found items available.</p>
-    @else
-        <div class="row">
-            @foreach ($items as $item)
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 {{ $item->highlighted ? 'border border-warning' : '' }}">
-                        @if($item->image_url)
-                            <img src="{{ asset($item->image_url) }}" class="card-img-top" alt="{{ $item->title }}" style="height: 200px; object-fit: cover;">
-                        @else
-                            <img src="{{ asset('images/default-image.png') }}" class="card-img-top" alt="No image available" style="height: 200px; object-fit: cover;">
-                        @endif
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a href="{{ route('items.found', $item->id) }}">{{ $item->title }}</a>
-                            </h5>
-                            <p class="card-text">{{ Str::limit($item->description, 100) }}</p>
-                            <p><strong>Location:</strong> {{ $item->location }}</p>
-                            <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($item->date)->format('M d, Y') }}</p>
-                            <p><strong>Category:</strong> {{ $item->category->name }}</p>
-                            @if($item->subcategory)
-                                <p><strong>Subcategory:</strong> {{ $item->subcategory->name }}</p>
-                            @endif
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Views: {{ $item->views }}</small>
-                            <br>
-                            <small class="text-muted">Highlighted: {{ $item->highlighted ? 'Yes' : 'No' }}</small>
-                            <br>
-                            <small class="text-muted">Claimed: {{ $item->is_claimed ? 'Yes' : 'No' }}</small>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    @endif
+<div class="container" style="max-width: 1200px; margin: 20px auto;">
+    <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 20px;">Found Items</h1>
+    <div class="row" style="display: flex; flex-wrap: wrap; gap: 20px;">
+        @foreach($items as $item)
+            <x-item-card 
+                :title="$item->title"
+                :description="$item->description"
+                :image="$item->image_url"
+                :location="$item->location"
+                :category="$item->category->name ?? 'N/A'"
+                :subcategory="$item->subcategory->name ?? 'N/A'"
+                :status="$item->status"
+                :date="$item->created_at->format('Y-m-d')"
+                :link="route('items.show', $item->id)" />
+        @endforeach
+    </div>
 </div>
 @endsection

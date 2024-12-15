@@ -1,21 +1,21 @@
-<!-- resources/views/items/category.blade.php -->
+@extends('layouts.app')
 
-<h1>Items in {{ $category->name }}</h1>
-
-@if($items->isEmpty())
-    <p>No items available in this category.</p>
-@else
-    <ul>
+@section('content')
+<div class="container mt-5">
+    <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 20px;">Items in Category: {{ $category->name }}</h1>
+    <div class="row" style="display: flex; flex-wrap: wrap; gap: 20px;">
         @foreach($items as $item)
-            <li>
-                <h2>{{ $item->title }}</h2>
-                <p>{{ $item->description }}</p>
-                <p>Location: {{ $item->location }}</p>
-                <p>Status: {{ ucfirst($item->status) }}</p>
-                @if($item->subcategory)
-                    <p>Subcategory: {{ $item->subcategory->name }}</p>
-                @endif
-            </li>
+            <x-item-card 
+                :title="$item->title"
+                :description="$item->description"
+                :image="$item->image_url"
+                :location="$item->location"
+                :category="$item->category->name ?? 'N/A'"
+                :subcategory="$item->subcategory->name ?? 'N/A'"
+                :status="$item->status"
+                :date="$item->created_at->format('Y-m-d')"
+                :link="route('items.show', $item->id)" />
         @endforeach
-    </ul>
-@endif
+    </div>
+</div>
+@endsection

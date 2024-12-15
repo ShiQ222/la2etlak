@@ -1,3 +1,121 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Container styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Title styling */
+.page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Row styling for card layout */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    justify-content: flex-start; /* Aligns items to the left by default */
+    margin: 0 auto;
+}
+
+/* Apply left alignment for the last row */
+.row:last-child {
+    justify-content: flex-start;
+}
+
+/* Card styling */
+.item-card {
+    width: 100%;
+    max-width: 300px; /* Fixed width for all cards */
+    height: 450px; /* Fixed height for uniformity */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    background-color: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Image container with fixed height */
+.item-card img {
+    width: 100%;
+    height: 150px; /* Fixed space for the image */
+    object-fit: cover;
+}
+
+/* Card body styling with consistent spacing */
+.card-body {
+    flex: 1;
+    padding: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Title and text styling */
+.card-body h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.card-body p {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+/* Ensuring each information field aligns the same in all cards */
+.card-body p span {
+    font-weight: bold;
+}
+
+/* View Details button styling */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    text-align: center;
+    width: 100%; /* Full width for uniform button size */
+    margin-top: auto;
+}
+
+/* Footer styling */
+.card-footer {
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    font-size: 0.85rem;
+    text-align: center;
+    width: 100%;
+}
+
+/* Consistent footer layout */
+.card-footer small {
+    color: #6c757d;
+}
+
+/* Enforces layout behavior for the cards */
+.card-container {
+    flex: 1 1 30%; /* Each card takes about one-third of the row */
+    max-width: 300px;
+    min-width: 280px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}

@@ -1,93 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La2etlak - Lost and Found Platform</title>
-    <!-- Bootstrap CSS (for styling and layout) -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">La2etlak.com</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('items.lost') }}">Lost Items</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('items.found') }}">Found Items</a></li>
-                
-                <!-- Category Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Categories
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('items.category', 'Electronics') }}">Electronics</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Clothing') }}">Clothing</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Accessories') }}">Accessories</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Documents') }}">Documents</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Jewelry') }}">Jewelry</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Keys') }}">Keys</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Bags') }}">Bags</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Footwear') }}">Footwear</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Toys') }}">Toys</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Books') }}">Books</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Medical') }}">Medical</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Personal Items') }}">Personal Items</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Sports Equipment') }}">Sports Equipment</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Stationery') }}">Stationery</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Household Items') }}">Household Items</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Tools') }}">Tools</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Vehicles') }}">Vehicles</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Pet Items') }}">Pet Items</a>
-                        <a class="dropdown-item" href="{{ route('items.category', 'Miscellaneous') }}">Miscellaneous</a>
-                    </div>
-                </li>
+@extends('layouts.app')
 
-                @guest
-                    <!-- Show Login and Register links if the user is not logged in -->
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
-                @else
-                    <!-- Show dropdown with user’s name if logged in -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ Auth::user()->name }}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
-                            <a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a>
-                            <div class="dropdown-divider"></div>
-                            <form method="POST" action="{{ route('logout') }}" style="display:inline;">
-                                @csrf
-                                <button type="submit" class="dropdown-item">Log Out</button>
-                            </form>
-                        </div>
-                    </li>
-                @endguest
-            </ul>
+@section('content')
+<div class="container mt-5">
+    <h1>Welcome to La2etlak</h1>
+    <p>La2etlak is your trusted Lost and Found Platform, connecting people with their lost belongings.</p>
+
+    <!-- Features Section -->
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Report Lost Items</h5>
+                    <p class="card-text">Easily report lost items with detailed descriptions and images.</p>
+                    <a href="{{ route('items.lost') }}" class="btn btn-primary">View Lost Items</a>
+                </div>
+            </div>
         </div>
-    </nav>
-
-    <!-- Main Content Section -->
-    <div class="container mt-5">
-        @yield('content')
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Report Found Items</h5>
+                    <p class="card-text">Help others by reporting items you’ve found.</p>
+                    <a href="{{ route('items.found') }}" class="btn btn-primary">View Found Items</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Browse Categories</h5>
+                    <p class="card-text">Explore items by category and find what you need.</p>
+                    <a href="#" class="btn btn-primary">Browse Categories</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="text-center mt-5">
-        <p>&copy; 2024 La2etlak.com All rights reserved.</p>
-    </footer>
+    <!-- How It Works Section -->
+    <div class="mt-5">
+        <h2>How It Works</h2>
+        <p>Follow these simple steps to find or report lost items:</p>
+        <ol>
+            <li><strong>Register or Log In:</strong> Create an account to get started.</li>
+            <li><strong>Report Items:</strong> Provide detailed information about lost or found items.</li>
+            <li><strong>Connect:</strong> Use our platform to connect with the item owner or finder.</li>
+        </ol>
+    </div>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+    <!-- Testimonials Section -->
+    <div class="mt-5">
+        <h2>What People Say</h2>
+        <p>See how La2etlak has helped others:</p>
+        <blockquote class="blockquote">
+            <p class="mb-0">"Thanks to La2etlak, I found my lost wallet within a day!"</p>
+            <footer class="blockquote-footer">Ahmed, Cairo</footer>
+        </blockquote>
+        <blockquote class="blockquote">
+            <p class="mb-0">"This platform is amazing. Someone returned my missing pet safely."</p>
+            <footer class="blockquote-footer">Fatma, Alexandria</footer>
+        </blockquote>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-5">
+        <a href="{{ route('register') }}" class="btn btn-lg btn-success">Get Started Now</a>
+    </div>
+</div>
+@endsection

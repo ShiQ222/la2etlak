@@ -23,14 +23,20 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'is_subscribed',        // New field for subscription status
-        'subscription_date',     // New field for subscription date
-        'expiry_date',           // New field for subscription expiry date
-        'role',                  // New field for user role
-    ];
+    'name',
+    'email',
+    'password',
+    'is_subscribed',        // Field for subscription status
+    'subscription_date',    // Field for subscription date
+    'expiry_date',          // Field for subscription expiry date
+    'role',                 // Field for user role
+    'phone',                // New field for phone number
+    'address',              // New field for address
+    'country',              // New field for country
+    'dob',                  // New field for date of birth
+    'is_active',            // New field for account active status
+];
+
 
     /**
      * The attributes that should be hidden for serialization.
