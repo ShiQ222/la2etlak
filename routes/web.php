@@ -1,17 +1,19 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ItemController;
+use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\Items\ItemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
-use App\Http\Controllers\Auth\SocialLoginController;
+use App\Http\Controllers\Auth\Social\SocialLoginController;
 use App\Http\Middleware\CheckUserIsActive;
+use App\Http\Controllers\LanguageController;
 
 
 // Home Route
 Route::get('/', function () {
     return view('home'); // Adjust to the view you want for your homepage
 });
+
 
 // Dashboard Route (only accessible if logged in, email is verified, and user is active)
 Route::get('/dashboard', function () {
@@ -49,6 +51,9 @@ Route::middleware(['auth', RoleMiddleware::class . ':moderator'])->group(functio
     // Add other moderator routes here as needed
 });
 
+
+
+
 // Check if user is active (applies to routes that require the user to be active)
 Route::middleware(['auth', CheckUserIsActive::class])->group(function () {
     // Add other routes here that require the user to be active
@@ -67,10 +72,10 @@ Route::get('/terms', function () {
 require __DIR__.'/auth.php';
 
 
-// Arabic and English  language button
-Route::get('/switch-language/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'ar'])) {
-        session(['locale' => $locale]);
-    }
-    return redirect()->back();
-})->name('locale.switch');
+
+// Routes for Languages
+Route::get('lang', [LanguageController::class, 'change'])->name("change.lang");
+
+
+
+

@@ -26,5 +26,8 @@ class AppServiceProvider extends ServiceProvider
 
         // Share $categories variable globally with all views
         View::share('categories', $categories);
+
     }
+	
+
 }

@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Items;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Http\Controllers\Controller;
+
 
 class ItemController extends Controller
 {

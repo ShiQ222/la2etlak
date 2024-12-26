@@ -7,6 +7,7 @@
 
         <title>{{ config('app.name', 'La2etlak') }}</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -17,7 +18,8 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+            <!-- Use the new navbar Blade component -->
+            <x-navbar />
 
             <!-- Page Heading -->
             @isset($header)
@@ -29,10 +31,9 @@
             @endisset
 
             <!-- Page Content -->
-<main>
-    @yield('content')
-</main>
-
+            <main>
+                @yield('content')
+            </main>
         </div>
     </body>
 </html>
